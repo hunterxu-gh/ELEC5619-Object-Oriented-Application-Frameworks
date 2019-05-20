@@ -1,10 +1,10 @@
 # ELEC5619
-CUSPCrasher: Java Spring website group work for unit ELEC5619
+CUSPCrusher
 
 # Project description
 ##  Aims
 
-Our proposed project aims to create a web application platform that helps students find out information of a unit or a lecturer via reviews. It also allows users to provide reviews on a unit or a lecturer, as well as creating and viewing sample questions for the preparation of quizzes or exams.
+Our project aims to create a web application platform that helps students find out information of a unit or a lecturer via reviews. It also allows users to provide reviews on a unit or a lecturer, as well as creating and viewing sample questions for the preparation of quizzes or exams.
 
 ## Overview
 
