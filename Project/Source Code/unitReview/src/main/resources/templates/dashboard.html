@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link th:href="@{/dashboard.css}" rel="stylesheet" type="text/css"/>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                           <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div> --> 
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5 th:text="|${student.first_name} ${student.last_name}|">
+                                    </h5>
+                                    <h6 th:text="${student.degree}">
+                                    </h6>
+                                    <p class="proile-rating"><a href="/home">Home Page |</a> <a href="/search">Search |</a> <a href="/view_questions/ELEC5619">Self Test </a> </p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#units" role="tab" aria-controls="profile" aria-selected="false">Reviewed Units</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#lecturers" role="tab" aria-controls="profile" aria-selected="false">Reviewed Lecturers</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="/logout" class="profile-edit-btn" name="btnAddMore" >Log out</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>WORK LINK</p>
+                            <a href="">Website Link</a><br/>
+                            <a href="">Bootsnipp Profile</a><br/>
+                            <a href="">Bootply Profile</a>
+                            <p>SKILLS</p>
+                            <span th:text="${student.skills}"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>User Id</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="${student.id}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="|${student.first_name} ${student.last_name}|"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="${student.email}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Nationality</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="${student.nationality}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Current Degree</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p th:text="${student.degree}"></p>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="units" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>My reviewed Units</label><br/>
+                                        <p>
+                                           <table>
+                                           <th:block th:each="item : ${myUnitReviews}">
+                                           <span th:text="@{'Unit Name: '+${item.unitCode}+' . My Comment: '+${item.comment}}"></span></br>
+                                           </th:block>
+                                           <hr/>
+                                           </table>
+                                           </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="lecturers" role="tabpanel" aria-labelledby="profile-tab">
+                              <div class="row">
+                                    <div class="col-md-12">
+                                        <label>My reviewed Lecturers</label><br/>
+                                        <p>
+                                           <table>
+                                           <th:block th:each="item : ${myLectReviews}">
+                                           <span th:text="@{'Lecture id: '+${item.lecturerId}+'. My Comment: '+${item.comment}}"></span></br>
+                                           </th:block>
+                                           <hr/>
+                                           </table>
+                                           </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>

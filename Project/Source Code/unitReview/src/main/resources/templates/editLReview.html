@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UosCrusher | Edit Review</title>
+    <link th:href="@{/lecturer_review.css}" rel="stylesheet"/>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script th:src="@{/starrr.js}" ></script>
+	<script th:src="@{/lecturer_review.js}" ></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	      <a class="navbar-brand" href="#">UoSCrasher</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarCollapse">
+	        <ul class="navbar-nav mr-auto">
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000">Home </a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/login">Login</a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/logout">Logout</a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/search">Search</a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/dashboard">Profile</a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/registration">Register</a>
+	          </li>
+	          
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/view_questions/ELEC5619">Self Test</a>
+	          </li>
+	         
+          
+	          
+	          
+	        </ul>
+	        
+	      </div>
+	</nav>
+	
+	<main role="main" class="container">
+		<div class="jumbotron title-section">
+			<div class="container">
+				<h1 class="display-6" th:text="'Lecturer: ' +  ${lecturer.lecturerName}"></h1>
+			</div>
+		</div>
+		
+		<div class="row">
+			<!-- The Column Showing the Info of the Lecturer -->
+			<div class="col-3 side-column border border-secondary">
+				<div class="side-item">
+					<p>Faculty or School</p>
+					
+					<p th:text="${lecturer.facultySchool}"></p>
+				</div>
+				
+				<div class="side-item">
+					<p>Lecturer ID</p>
+					
+					<p th:text="${lecturer.lecturerId}"></p>    				
+				</div>
+				
+				<div class="side-item">
+					<p>Specialty Area</p>
+					
+					<p th:text="${lecturer.specialtyArea}"></p>    				
+				</div>
+				
+				<div class="side-item">
+					<p>Teaching History</p>
+					<a th:href="@{'/unit_review/'+${lecturer.teachingHistory}}" th:text="${lecturer.teachingHistory}"></a>
+				</div>
+				
+			</div>
+			
+			<div class="col-9 review-column">
+				<p>Edit The Review</p>
+				
+				<form id= "update-review-form" action="#" th:action="@{/lecturer/__${lecturerIdString}__/update_review/__${lReviewIdString}__}" th:object="${review}" method = "post">
+					 
+					<div class="row">
+						<div class="col-12">
+							<!-- Show but can't update -->
+							<span>Teaching Ability From </span>
+							<div class='starrr' th:id="${review.lecturerReviewId}+'-ability'"></div>
+							<script th:inline="javascript">
+								$('.starrr#[[${review.lecturerReviewId}]]-ability').starrr({
+									rating: [[${review.ability}]],
+									readOnly: true
+								})
+							</script>
+							
+							<!-- Update but can't show -->
+							<span>To </span>
+							<div class="starrr " id="star1"></div>
+							<input class="d-none" type="text" th:field="*{ability}"/>
+							
+						</div>
+						
+						<div class="col-12">	 					
+	 						<!-- Show but can't update -->
+	 						<span>Responsiveness From </span>
+	 						<div class='starrr' th:id="${review.lecturerReviewId}+'-responsiveness'"></div>
+	 						<script th:inline="javascript">
+	 							$('.starrr#[[${review.lecturerReviewId}]]-responsiveness').starrr({
+	 								rating: [[${review.responsiveness}]],
+	 								readOnly: true
+ 								})
+							</script>
+							<!-- Update but can't show -->
+							<span>To </span>
+	 						<div class="starrr " id="star2"></div>
+	 						<input class="d-none" type="text" th:field="*{responsiveness}"/>
+	 						
+							
+						</div>
+						
+					</div>
+					
+					<div class="row">
+						<div class="col-12">
+							<label for="comment">Comment:</label>
+							
+							<textarea class="form-control" rows="5" id="comment" placeholder="Write your comment ..." th:field="*{comment}"></textarea>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-12">
+							<input class="d-none" type="number" />
+							
+							<input type="submit" value="Submit" id="new-submit"/>
+						</div>
+					</div>
+				</form>
+				
+			</div>
+		</div>
+	</main>
+	
+	<footer class="footer">
+      <div class="container">
+        <span class="text-muted">written with Spring MVC, Spring Data, Thymleaf, JavaScript, HTML, CSS</span>
+      </div>
+    </footer>
+</body>
+
+</html>

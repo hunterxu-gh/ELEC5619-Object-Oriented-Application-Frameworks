@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link th:href="@{/login.css}" rel="stylesheet"/>
+    <title>UnitReview Register</title>
+</head>
+<body>
+
+<form th:action="@{/registration}" method="post">
+  <h1>Registration</h1>
+  <h1 th:if="${error}" th:text="${error}"></h1>
+  <div class="inset">
+  <p>
+    <label for="email">EMAIL ADDRESS</label>
+    <input type="text" name="email" id="email" placeholder="Email" required="required" >
+  </p>
+  <p>
+    <label for="password">PASSWORD</label>
+    <input type="password" name="password" id="password" placeholder="Password" required="required">
+  </p>
+  <p>
+    <label for="first_name">FIRST NAME</label>
+    <input type="text" name="first_name" id="first_name" required="required">
+  </p>
+  <p>
+    <label for="last_name">LAST NAME</label>
+    <input type="text" name="last_name" id="last_name" required="required">
+  </p>
+    <p>
+    <label for="degree">CURRENT DEGREE</label>
+    <input type="text" name="degree" id="degree" required="required">
+  </p>
+    <p>
+    <label for="skills">SKILLS</label>
+    <input type="text" name="skills" id="skills" placeholder="Separated by space" required="required">
+  </p>
+  <p>
+    <label for="nationality">NATIONALITY</label>
+    <input type="text" name="nationality" id="nationality" placeholder="Optional" >
+  </p>
+  </div>
+  <p class="p-container">
+    <input type="submit" id="go" value="Register">
+  </p>
+</form>
+
+</body>
+</html>

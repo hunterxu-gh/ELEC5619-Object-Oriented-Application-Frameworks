@@ -1,0 +1,40 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<meta charset="UTF-8"/>
+<title>Search Result</title>
+</head>
+<body>
+
+<div class="container">
+
+    <hgroup class="mb20">
+		<h1>Search Results</h1>
+		<h2 class="lead"><strong class="text-danger" th:text="${#lists.size(results)}"></strong> results were found for the search</h2>								
+	</hgroup>
+
+    <section class="col-xs-12 col-sm-6 col-md-12">
+        <div th:if="${isUnit}">
+        <table>
+        <th:block th:each="item : ${results}">
+		<article class="search-result row">
+		<h3><a th:href="@{'/unit_review/'+${item.unitCode}}" th:text="@{${item.unitCode}+' '+${item.unitName}}"></a></h3>			
+		<p th:text="@{'Taught by '+${item.lecturer}}"></p>
+		<span class="clearfix borda"></span>
+		</article>
+		</table>
+		</div>
+		
+		<div th:if="${isLect}">
+        <table>
+        <th:block th:each="item : ${results}">
+		<article class="search-result row">
+		<h3><a th:href="@{'/lecturer/'+${item.lecturerId}}" th:text="@{${item.lecturerName}+' at '+${item.facultySchool}}"></a></h3>			
+		<span class="clearfix borda"></span>
+		</article>
+		</table>
+		</div>
+	</section>
+</div>

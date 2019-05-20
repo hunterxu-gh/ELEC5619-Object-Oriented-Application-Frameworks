@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UosCrusher | Unit Review</title>
+    <link th:href="@{/unit_review.css}" rel="stylesheet"/>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script th:src="@{/starrr.js}" ></script>
+	<script th:src="@{/unit_review.js}" ></script>
+	<style type="text/css">
+       a{TEXT-DECORATION:none}
+    </style>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	      <a class="navbar-brand" href="#">UoSCrasher</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarCollapse">
+	        <ul class="navbar-nav mr-auto">
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000">Home </a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/login">Login</a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/logout">Logout</a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/search">Search</a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/dashboard">Profile</a>
+	          </li>
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/registration">Register</a>
+	          </li>
+	          
+	          <li class="nav-item active">
+	            <a class="nav-link" href="http://localhost:3000/view_questions/ELEC5619">Self Test</a>
+	          </li>
+	         
+          
+	          
+	          
+	        </ul>
+	        
+	      </div>
+	</nav>
+	
+	
+	<main role="main" class="container">
+
+		<div class="jumbotron title-section">
+			<div class="container">
+				<h1 class="display-6" th:text="${unit.unitCode} + ' ' + ${unit.unitName}"></h1>
+			</div>
+		</div>	
+    
+    	<div class="row">
+    		<div class="col-3 side-column border border-secondary">
+    			<div class="side-item">
+    				<p>Mode</p>
+    				<p th:text="${unit.unitMode}"></p>    				
+    			</div>
+    			<div class="side-item">
+    				<p>Faculty/School</p>
+    				<p th:text="${unit.facultySchool}"></p>    				
+    			</div>
+    			<div class="side-item">
+    				<p>Unit Coordinator</p>
+    				<p th:text="${unit.lecturer}"></p>    				
+    			</div>
+    			<div class="side-item">
+    				<p>Session Options</p>
+    				<p th:text="${unit.sessionOption}"></p>    				
+    			</div>
+     			<div class="side-item">
+    				<p>unitID</p>
+    				<p th:text="${unit.unitId}"></p>    				
+    			</div>
+    		</div><!--end of side-column -->
+    		
+			<div class="col-9 review-column" >
+			
+			<form class="needs-validation" id= "add-question-form" action="#" th:action="@{update_question}" th:object="${question}" method = "post">
+            <input   id="vote-number" type="hidden"  th:field="*{voteNumber}" value="${question.voteNumber}">
+            <input   id="vote-number" type="hidden"  th:field="*{downNumber}" value="${question.downNumber}">
+            <div class="col-9 review-column" >
+   
+		<div >									
+           <div class="form-group">
+              <label for="question">Title</label>
+              <input  class="form-control input-lg" id="questionTitle" type="text" placeholder="input question title" th:field="*{questionTitle}">  
+            </div>
+            
+        </div>
+        <div >									
+           <div class="form-group">
+              <label for="question">Unit Code</label>
+        <select style="margin-top:20px" th:field="*{unitCode}">
+  			<option value="">Choosing...</option>
+  				<option value="ELEC5619">ELEC5619</option>
+  				<option value="ELEC5616">ELEC5616</option>
+  				<option value="COMP9007">COMP9007</option>
+		</select>
+		
+		</div>
+        <!--<div >									
+           <div class="form-group">
+              <label for="question">Unit Code</label>
+              <input  class="form-control input-lg" id="unitCode" type="text" placeholder="input unit code" th:field="*{unitCode}" value="">  
+            </div>
+        </div>-->
+    	
+    	
+		<div >									
+           <div class="form-group">
+              <label for="question">Question</label>
+              <textarea  class="form-control input-lg" id="questionContent" type="text" rows = "3" placeholder="input question content" th:field="*{questionContent}">   </textarea>           
+            </div>
+        </div>
+    	
+    	<div >									
+           <div class="form-group">
+              <label for="question">Sample Answer</label>
+              <textarea  class="form-control input-lg" id="sampleAnswer" type="text" rows = "3" placeholder="input question content" th:field="*{sampleAnswer}">   </textarea>           
+            </div>
+        </div>
+        
+        
+    	
+    	
+        
+        
+    	</div>
+    	
+           
+    
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit Question</button>
+          </form>
+ 			
+    	</div>
+  
+	</main>
+	<footer class="footer">
+      <div class="container">
+        <span class="text-muted">written with Spring MVC, Spring Data, Thymleaf, JavaScript, HTML, CSS</span>
+      </div>
+    </footer>
+</body>
+</html>

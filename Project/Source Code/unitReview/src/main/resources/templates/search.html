@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="search.css" rel="stylesheet" />
+    <script th:src="@{/choices.js}"></script>
+  </head>
+  <body style="background-color: #333;">
+  
+    <div class="h" th:if="${welcome}" th:text="|Hey ${welcome}! The community is waiting for you!|"></div>
+    <div class="h" th:unless="${welcome}" th:text="@{'Uni is hard, why not review? ;)'}"></div>
+    <div class="s003">
+      <form th:action="@{/search}" method="post">
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <div class="input-select">
+              <select data-trigger="" name="option">
+                <option placeholder="" value="Units">Unit Name</option>
+                <option value="Lecturers">Lecturers</option>
+                <option value="unicode"> Unit Code</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-field second-wrap">
+            <input id="search" type="text" name="query" placeholder="Enter Keywords?" />
+          </div>
+          <div class="input-field third-wrap">
+            <input class="btn-search" type="submit" value="Let's review!">
+          </div>
+        </div>
+      </form>
+    </div>
+  
+    
+    
+    <script>
+      const choices = new Choices('[data-trigger]',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+      });
+
+    </script>
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

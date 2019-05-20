@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link th:href="@{/login.css}" rel="stylesheet"/>
+    <title>UnitReview Login</title>
+</head>
+<body>
+
+<form th:action="@{/login}" method="post">
+  <h1>Hail USYD! :)</h1>
+  <h1 th:if="${error}" th:text="${error}"></h1>
+  <div class="inset">
+  <p>
+    <label for="email">EMAIL ADDRESS</label>
+    <input type="text" name="username" id="email" placeholder="Email" required="required" >
+  </p>
+  <p>
+    <label for="password">PASSWORD</label>
+    <input type="password" name="password" id="password" placeholder="Password" required="required">
+  </p>
+  </div>
+  <p class="p-container">
+    <a href="/registration">Don't have an account?</a>
+    <input type="submit" id="go" value="Login">
+  </p>
+</form>
+
+</body>
+</html>
